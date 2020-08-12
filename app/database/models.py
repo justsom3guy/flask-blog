@@ -1,5 +1,7 @@
 from .db import db
 from flask_bcrypt import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+from app import login
 
 
 class Blog(db.Document):
@@ -8,7 +10,7 @@ class Blog(db.Document):
     author = db.ReferenceField("User")
 
 
-class User(db.Document):
+class User(UserMixin, db.Document):
     user_name = db.StringField(required=True, unique=True)
     first_name = db.StringField(required=True)
     last_name = db.StringField(required=True)
@@ -26,3 +28,7 @@ class User(db.Document):
         self.password = password
         self.hash_password()
 
+
+@login.user_loader
+def load_user(id):
+    return User.objects.get(id=user_id)

@@ -1,7 +1,8 @@
 import datetime
 from flask import request, Response
 from flask_restful import Resource
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, set_access_cookies
+from flask_login import current_user, login_user
 from app.database.models import User
 
 
@@ -25,4 +26,6 @@ class LoginApi(Resource):
 
         expires = datetime.timedelta(days=7)
         access_token = create_access_token(identity=str(user.id), expires_delta=expires)
+        set_access_cookies(access_token)
+        login_user(user)
         return {"token": access_token}
