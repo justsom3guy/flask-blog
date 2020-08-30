@@ -1,4 +1,4 @@
-from flask import Response, request
+from flask import Response, request, jsonify
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from app.database.models import Blog, User
@@ -19,7 +19,8 @@ class BlogsApi(Resource):
         user.update(push__blogs=blog)
         user.save()
         id = blog.id
-        return {"id": str(id)}, 200
+        resp = jsonify({"id": str(id)})
+        return resp, 200
 
 
 class BlogApi(Resource):
@@ -35,7 +36,7 @@ class BlogApi(Resource):
     def delete(self, id):
         user_id = get_jwt_identity()
         blog = Blog.objects.get(id=id, author=user_id)
-        movie.delete()
+        blog.delete()
         return "", 200
 
     @jwt_required

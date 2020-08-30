@@ -7,19 +7,24 @@
 		<li class="nav-item">
 			<a class="nav-link" href="/">Home</a>
 		</li>
+		{% if current_user.is_authenticated %}
 		<li class="nav-item">
 			<a class="nav-link" href="/user/profile">Profile</a>
 		</li>
 
 		<!-- Dropdown -->
 		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-				<span class="navbar-toggler-icon"></span>
+			<a class="nav-link dropdown-toggle" id="navbardrop" data-toggle="dropdown">
 			</a>
 			<div class="dropdown-menu dropdown-menu-right">
 				<a class="dropdown-item" href="/user/settings">Settings</a>
 				<a class="dropdown-item" href="#">Logout</a>
 			</div>
 		</li>
+		{% else %}
+		<li class="nav-item">
+			<a class="nav-link" href="/login">Login</a>
+		</li>
+		{% endif %}
 	</ul>
 </nav>
