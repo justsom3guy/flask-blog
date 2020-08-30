@@ -47,18 +47,10 @@ JWT_TOKEN_LOCATION = 'cookies'
 JWT_COOKIE_CSRF_PROTECT = True
 ```
 
----
+### For secret keys
 
-## Todo
+``` python
+>>> import secrets
+>>> secrets.token_hex(16) #for python-terminal else print the output.
+```
 
-* [x] Connect to mongo-DB
-
-* [x] Implement flask-login
-
-* [ ] Front-end of the pages
-
-* [ ] Implement flask-mail
-
-* [ ] Create production model
-
-* [ ] Testing
