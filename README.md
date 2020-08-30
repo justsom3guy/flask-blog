@@ -47,6 +47,13 @@ JWT_TOKEN_LOCATION = 'cookies'
 JWT_COOKIE_CSRF_PROTECT = True
 ```
 
+### For secret keys
+
+``` python
+>>> import secrets
+>>> secrets.token_hex(16) #for python-terminal else print the output.
+```
+
 ---
 
 ## Todo
